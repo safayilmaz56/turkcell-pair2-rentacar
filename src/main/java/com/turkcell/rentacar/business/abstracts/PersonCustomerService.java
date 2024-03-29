@@ -1,6 +1,7 @@
 package com.turkcell.rentacar.business.abstracts;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.turkcell.rentacar.business.dtos.requests.creates.CreatePersonCustomerRequest;
 import com.turkcell.rentacar.business.dtos.requests.updates.UpdatePersonCustomerRequest;
@@ -16,4 +17,5 @@ public interface PersonCustomerService {
 	void delete(int id);
 	UpdatedPersonCustomerResponse update(int id,UpdatePersonCustomerRequest updatePersonCustomerRequest);
 	PersonalCustomer getByIdForPersonRental(int id);
+	Optional<PersonalCustomer> getByNationalNumberForPayment(String nationaNumber);
 }

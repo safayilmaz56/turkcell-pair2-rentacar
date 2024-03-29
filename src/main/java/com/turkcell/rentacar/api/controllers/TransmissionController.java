@@ -24,8 +24,8 @@ public class TransmissionController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public void add(@Valid @RequestBody CreateTransmissionRequest createTransmissionRequest){
-        this.transmissionService.add(createTransmissionRequest);
+    public CreatedTransmissionResponse add(@Valid @RequestBody CreateTransmissionRequest createTransmissionRequest){
+        return this.transmissionService.add(createTransmissionRequest);
     }
 
     @GetMapping("/getById/{id}")

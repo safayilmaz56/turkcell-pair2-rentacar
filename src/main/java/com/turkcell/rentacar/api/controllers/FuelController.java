@@ -21,8 +21,8 @@ public class FuelController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public void add(@Valid @RequestBody CreateFuelRequest createFuelRequest){
-        this.fuelService.add(createFuelRequest);
+    public CreatedFuelResponse add(@Valid @RequestBody CreateFuelRequest createFuelRequest){
+        return this.fuelService.add(createFuelRequest);
     }
 
     @GetMapping("/getById/{id}")

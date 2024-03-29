@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class CorporateCustomerManager implements CorporateCustomerService {
@@ -77,6 +79,12 @@ public class CorporateCustomerManager implements CorporateCustomerService {
     @Override
     public CorporateCustomer getByIdForCorporateRental(int id) {
         CorporateCustomer corporateCustomer=this.corporateCustomerRepository.findById(id).get();
+        return corporateCustomer;
+    }
+
+    @Override
+    public Optional<CorporateCustomer> getByTaxIdNumberForPayment(String taxIdNumber) {
+        Optional<CorporateCustomer> corporateCustomer=this.corporateCustomerRepository.findByTaxIdNumber(taxIdNumber);
         return corporateCustomer;
     }
 

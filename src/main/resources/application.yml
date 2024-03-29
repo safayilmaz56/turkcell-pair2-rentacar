@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/rentacarturkcell
+    url: jdbc:postgresql://localhost:5432/rentacarturkcellpair
     username: postgres
     password: 12345
   jpa:

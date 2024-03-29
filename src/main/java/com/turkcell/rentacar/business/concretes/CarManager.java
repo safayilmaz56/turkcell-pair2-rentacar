@@ -115,4 +115,11 @@ public class CarManager implements CarService {
 		Car car=this.carRepository.findById(id).get();
 		return car;
 	}
+
+    @Override
+    public Car getByIdForPayment(int id) {
+        this.carBusinessRules.idIsNotExists(id);
+        Car car=this.carRepository.findById(id).get();
+        return car;
+    }
 }

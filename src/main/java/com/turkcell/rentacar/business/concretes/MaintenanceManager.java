@@ -9,6 +9,7 @@ import com.turkcell.rentacar.core.utilities.mapping.ModelMapperService;
 import com.turkcell.rentacar.dataAccess.abstracts.MaintenanceRepository;
 import com.turkcell.rentacar.entities.concretes.Car;
 import com.turkcell.rentacar.entities.concretes.Maintenance;
+import com.turkcell.rentacar.entities.enums.State;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +28,13 @@ public class MaintenanceManager implements MaintenanceService {
     @Override
     public CreateMaintenanceResponse startMaintence(CreateMaintenanceRequest createMaintenanceRequest) {
         this.maintenanceBusinessRules.currentlyRented(createMaintenanceRequest.getCarId());
+        this.maintenanceBusinessRules.currentlyUnderMaintenance(createMaintenanceRequest.getCarId());
 
         Maintenance maintenance=this.modelMapperService.forRequest().map(createMaintenanceRequest,Maintenance.class);
         Car car=this.carService.getByIdForMaintenance(createMaintenanceRequest.getCarId());
         maintenance.setDateSent(LocalDateTime.now());
         maintenance.setCar(car);
-        car.setState("UnderMaintenance");
+        car.setState(State.UnderMaintenance);
         Maintenance existsMaintenance=this.maintenanceRepository.save(maintenance);
 
         CreateMaintenanceResponse createMaintenanceResponse=this.modelMapperService.forResponse().map(existsMaintenance,CreateMaintenanceResponse.class);
@@ -57,7 +59,7 @@ public class MaintenanceManager implements MaintenanceService {
         Maintenance existsMaintenance =this.maintenanceRepository.findById(id).get();
         existsMaintenance.setDateReturned(LocalDateTime.now());
         Car car=existsMaintenance.getCar();
-        car.setState("Available");
+        car.setState(State.Available);
         Maintenance updatedMaintenance=this.maintenanceRepository.save(existsMaintenance);
         CreateMaintenanceResponse createMaintenanceResponse=this.modelMapperService.forResponse().map(updatedMaintenance,CreateMaintenanceResponse.class);
         return createMaintenanceResponse;

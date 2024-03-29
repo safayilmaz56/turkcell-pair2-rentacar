@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class PersonCustomerManager implements PersonCustomerService {
@@ -76,4 +78,11 @@ public class PersonCustomerManager implements PersonCustomerService {
 		PersonalCustomer personalCustomer =this.personCustomerRepository.findById(id).get();
 		return personalCustomer;
 	}
+
+    @Override
+    public Optional<PersonalCustomer> getByNationalNumberForPayment(String nationalNumber) {
+        Optional<PersonalCustomer> personalCustomer =this.personCustomerRepository.findByNationalNumber(nationalNumber);
+        return personalCustomer;
+    }
+
 }

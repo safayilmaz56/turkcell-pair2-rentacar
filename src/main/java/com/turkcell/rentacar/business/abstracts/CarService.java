@@ -20,4 +20,5 @@ public interface CarService {
     //getall , getById, delete,update
     Car getByIdForMaintenance(int id);
     Car getByIdForRental(int id);
+    Car getByIdForPayment(int id);
 }

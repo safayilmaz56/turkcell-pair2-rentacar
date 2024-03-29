@@ -1,6 +1,7 @@
 package com.turkcell.rentacar.business.abstracts;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.turkcell.rentacar.business.dtos.requests.creates.CreateCorporateCustomerRequest;
 import com.turkcell.rentacar.business.dtos.requests.updates.UpdateCorporateCustomerRequest;
@@ -15,4 +16,5 @@ public interface CorporateCustomerService {
 	void delete(int id);
 	UpdatedCorporateCustomerResponse update(int id,UpdateCorporateCustomerRequest updateCorporateCustomerRequest);
 	CorporateCustomer getByIdForCorporateRental(int id);
+	Optional<CorporateCustomer> getByTaxIdNumberForPayment(String taxIdNumber);
 }

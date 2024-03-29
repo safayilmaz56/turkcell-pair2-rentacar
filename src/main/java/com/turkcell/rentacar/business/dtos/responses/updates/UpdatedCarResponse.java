@@ -15,7 +15,7 @@ public class UpdatedCarResponse {
     private int minimumFindexScore;
     private double dailyPrice;
     private String modelName;
-    private int state;
+    private String state;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 }
